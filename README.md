@@ -1,4 +1,4 @@
-habrok
+habrok [![Build Status](https://travis-ci.org/kurttheviking/habrok-js.svg?branch=master)](https://travis-ci.org/kurttheviking/habrok-js) [![Coverage Status](https://coveralls.io/repos/github/kurttheviking/habrok-js/badge.svg?branch=master)](https://coveralls.io/github/kurttheviking/habrok-js?branch=master)
 ======
 
 [Promises/A+](https://promisesaplus.com/), [request](https://www.npmjs.com/package/request)-powered, [boom](https://www.npmjs.com/package/boom)-enabled, JSON-first HTTP API client with automatic retry
