@@ -1,0 +1,59 @@
+{
+  "name": "habrok",
+  "description": "Promises/A+, request-powered, boom-enabled, JSON-first HTTP API client with automatic retry",
+  "version": "0.0.0",
+  "license": "ISC",
+  "main": "index.js",
+  "engines": {
+    "node": ">4.x"
+  },
+  "author": {
+    "name": "Kurt Ericson",
+    "email": "github@kurttheviking.com",
+    "url": "https://github.com/kurttheviking"
+  },
+  "contributors": [
+    {
+      "name": "Kurt Ericson",
+      "email": "github@kurttheviking.com",
+      "url": "https://github.com/kurttheviking"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kurttheviking/habrok-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kurttheviking/habrok-js/issues"
+  },
+  "homepage": "https://github.com/kurttheviking/habrok-js#readme",
+  "keywords": [
+    "api client",
+    "request",
+    "promise",
+    "promises-a",
+    "promises-aplus"
+  ],
+  "dependencies": {
+    "boom": "5.2.0",
+    "debug": "2.6.8",
+    "has": "1.0.1",
+    "request": "2.81.0"
+  },
+  "devDependencies": {
+    "chai": "4.1.0",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "15.0.1",
+    "eslint-plugin-import": "2.6.0",
+    "istanbul": "0.4.5",
+    "mocha": "3.4.2",
+    "mocha-eslint": "3.0.1",
+    "mockery": "2.1.0",
+    "sinon": "2.3.8",
+    "habrok": "1.0.5"
+  },
+  "scripts": {
+    "coverage": "./node_modules/istanbul/lib/cli.js cover --report=json-summary --report=html _mocha ./test -- --recursive",
+    "test": "node node_modules/mocha/bin/mocha ./test/$DIR --recursive"
+  }
+}
