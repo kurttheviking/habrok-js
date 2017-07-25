@@ -46,12 +46,12 @@
     "eslint": "3.19.0",
     "eslint-config-airbnb": "15.0.1",
     "eslint-plugin-import": "2.6.0",
-    "habrok": "1.0.5",
     "istanbul": "0.4.5",
     "mocha": "3.4.2",
     "mocha-eslint": "3.0.1",
     "mockery": "2.1.0",
-    "sinon": "2.3.8"
+    "sinon": "2.3.8",
+    "uuid-with-v6": "1.0.5"
   },
   "scripts": {
     "coverage": "./node_modules/istanbul/lib/cli.js cover --report=json-summary --report=html _mocha ./test -- --recursive",
