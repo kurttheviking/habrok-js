@@ -14,12 +14,12 @@ describe('Habrok', () => {
     const Habrok = require('../index');
     const habrok = new Habrok();
 
-    it('sets the DISABLE_CUSTOM_HEADERS constant', () => {
-      expect(habrok.DISABLE_CUSTOM_HEADERS).to.equal(false);
+    it('sets the DISABLE_AUTO_JSON constant', () => {
+      expect(habrok.DISABLE_AUTO_JSON).to.equal(false);
     });
 
-    it('sets the DISABLE_JSON_BODY constant', () => {
-      expect(habrok.DISABLE_JSON_BODY).to.equal(false);
+    it('sets the DISABLE_CUSTOM_HEADERS constant', () => {
+      expect(habrok.DISABLE_CUSTOM_HEADERS).to.equal(false);
     });
 
     it('sets the RETRIES constant', () => {
@@ -47,8 +47,8 @@ describe('Habrok', () => {
     const Habrok = require('../index');
 
     const config = {
+      disableAutomaticJson: true,
       disableCustomHeaders: true,
-      disableJsonBody: true,
       retries: 3,
       retryCodes: [404, '503'],
       retryMaxDelay: 1 + parseInt(Math.random() * 1000, 10),
@@ -57,12 +57,12 @@ describe('Habrok', () => {
 
     const habrok = new Habrok(config);
 
-    it('sets the DISABLE_CUSTOM_HEADERS constant', () => {
-      expect(habrok.DISABLE_CUSTOM_HEADERS).to.equal(config.disableCustomHeaders);
+    it('sets the DISABLE_AUTO_JSON constant', () => {
+      expect(habrok.DISABLE_JSON_BODY).to.equal(config.disableJsonBody);
     });
 
-    it('sets the DISABLE_JSON_BODY constant', () => {
-      expect(habrok.DISABLE_JSON_BODY).to.equal(config.disableJsonBody);
+    it('sets the DISABLE_CUSTOM_HEADERS constant', () => {
+      expect(habrok.DISABLE_CUSTOM_HEADERS).to.equal(config.disableCustomHeaders);
     });
 
     it('sets the RETRIES constant', () => {

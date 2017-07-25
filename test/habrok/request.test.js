@@ -145,7 +145,7 @@ describe('Habrok#request with disabled json parsing', () => {
     request = sinon.stub().yields(null, { statusCode: 200 }, body);
     mockery.registerMock('request', request);
 
-    habrok = require('../../index')({ disableJsonBody: true });
+    habrok = require('../../index')({ disableAutomaticJson: true });
   });
 
   afterEach(() => {
