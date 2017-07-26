@@ -28,7 +28,7 @@ const habrok = new Habrok();
 
 habrok.request({
   method: 'GET',
-  uri: 'https://api.viki.ng/longships'
+  uri: 'https://api.github.com/repositories'
 })
 .then(console.log);
 ```
