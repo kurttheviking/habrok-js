@@ -163,7 +163,7 @@ A `Promise` that resolves to an `Object` with the following properties:
 
 - `statusCode`: `Number`, the HTTP status code provided in the response
 - `headers`: `Object`, HTTP headers (lower-cased) and their values provided in the response
-- `body`: `Any`, the JSON-parsed response body (or the raw body if `disableAutomaticJson` was used)
+- `body`: `Any`, the JSON-parsed response body (or the raw body if `disableAutomaticJson` was set)
 
 The `Promise` is rejected with a [Boom](https://www.npmjs.com/package/boom)-wrapped error if an HTTP error occurs. The `Promise` is rejected with a generic `Error` if an error is returned by the underlying request library (usually from [http.ClientRequest](https://nodejs.org/api/http.html#http_class_http_clientrequest)).
 
