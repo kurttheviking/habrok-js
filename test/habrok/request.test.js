@@ -10,6 +10,7 @@ const uuid = require('uuid-with-v6');
 
 describe('Habrok#request', () => {
   const body = { x: uuid.v4() };
+  const res = { statusCode: 200, headers: { z: uuid.v4() } };
 
   let habrok;
   let request;
@@ -21,7 +22,7 @@ describe('Habrok#request', () => {
       useCleanCache: true
     });
 
-    request = sinon.stub().yields(null, { statusCode: 200 }, body);
+    request = sinon.stub().yields(null, res, body);
     mockery.registerMock('request', request);
 
     habrok = require('../../index')();
@@ -68,18 +69,19 @@ describe('Habrok#request', () => {
     });
   });
 
-  it('resolves to the parsed response', () => {
+  it('resolves to the expected response format', () => {
     const method = 'GET';
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri }).then((out) => {
-      expect(out).to.deep.equal(body);
+      expect(out).to.deep.equal(Object.assign({}, res, { body }));
     });
   });
 });
 
 describe('Habrok#request with disabled custom headers', () => {
   const body = { x: uuid.v4() };
+  const res = { statusCode: 200, headers: { z: uuid.v4() } };
 
   let habrok;
   let request;
@@ -91,7 +93,7 @@ describe('Habrok#request with disabled custom headers', () => {
       useCleanCache: true
     });
 
-    request = sinon.stub().yields(null, { statusCode: 200 }, body);
+    request = sinon.stub().yields(null, res, body);
     mockery.registerMock('request', request);
 
     habrok = require('../../index')({ disableCustomHeaders: true });
@@ -131,6 +133,7 @@ describe('Habrok#request with disabled custom headers', () => {
 
 describe('Habrok#request with disabled json parsing', () => {
   const body = `<x>${uuid.v4()}</x>`;
+  const res = { statusCode: 200, headers: { z: uuid.v4() } };
 
   let habrok;
   let request;
@@ -142,7 +145,7 @@ describe('Habrok#request with disabled json parsing', () => {
       useCleanCache: true
     });
 
-    request = sinon.stub().yields(null, { statusCode: 200 }, body);
+    request = sinon.stub().yields(null, res, body);
     mockery.registerMock('request', request);
 
     habrok = require('../../index')({ disableAutomaticJson: true });
@@ -164,18 +167,19 @@ describe('Habrok#request with disabled json parsing', () => {
     });
   });
 
-  it('resolves to the parsed response', () => {
+  it('resolves to the expected response format', () => {
     const method = 'GET';
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri }).then((out) => {
-      expect(out).to.equal(body);
+      expect(out).to.deep.equal(Object.assign({}, res, { body }));
     });
   });
 });
 
 describe('Habrok#request with a retried HTTP error (429)', () => {
   const body = { x: uuid.v4() };
+  const res = { statusCode: 429, headers: { z: uuid.v4() } };
 
   let habrok;
   let request;
@@ -187,7 +191,7 @@ describe('Habrok#request with a retried HTTP error (429)', () => {
       useCleanCache: true
     });
 
-    request = sinon.stub().yields(null, { statusCode: 429 }, body);
+    request = sinon.stub().yields(null, res, body);
     mockery.registerMock('request', request);
 
     habrok = require('../../index')({ retryMinDelay: 0 });
@@ -253,6 +257,7 @@ describe('Habrok#request with a retried HTTP error (429)', () => {
 
 describe('Habrok#request with a retried HTTP error (429) and max wait', () => {
   const body = { x: uuid.v4() };
+  const res = { statusCode: 429, headers: { z: uuid.v4() } };
 
   let habrok;
   let request;
@@ -264,7 +269,7 @@ describe('Habrok#request with a retried HTTP error (429) and max wait', () => {
       useCleanCache: true
     });
 
-    request = sinon.stub().yields(null, { statusCode: 429 }, body);
+    request = sinon.stub().yields(null, res, body);
     mockery.registerMock('request', request);
 
     habrok = require('../../index')({ retryMaxDelay: 0 });
@@ -306,6 +311,7 @@ describe('Habrok#request with a retried HTTP error (429) and max wait', () => {
 
 describe('Habrok#request with a non-retried HTTP error (500)', () => {
   const body = { x: uuid.v4() };
+  const res = { statusCode: 500, headers: { z: uuid.v4() } };
 
   let habrok;
   let request;
@@ -317,7 +323,7 @@ describe('Habrok#request with a non-retried HTTP error (500)', () => {
       useCleanCache: true
     });
 
-    request = sinon.stub().yields(null, { statusCode: 500 }, body);
+    request = sinon.stub().yields(null, res, body);
     mockery.registerMock('request', request);
 
     habrok = require('../../index')({ retryMinDelay: 1 });

@@ -33,6 +33,52 @@ habrok.request({
 .then(console.log);
 ```
 
+```json
+{
+  "statusCode": 200,
+  "headers": {
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
+    "cache-control": "public, max-age=60, s-maxage=60",
+    "content-length": "4477",
+    "content-security-policy": "default-src 'none'",
+    "content-type": "application/json; charset=utf-8",
+    "date": "Wed, 26 Jul 2017 04:09:30 GMT",
+    "etag": "6ffc6a0dbbe2613e4d8b3f7444e5c604",
+    "server": "GitHub.com",
+    "strict-transport-security": "max-age=31536000; includeSubdomains; preload",
+    "vary": "Accept, Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "deny",
+    "x-github-media-type": "github.v3",
+    "x-github-request-id": "A6B6:1E34C:866014:B49BDD:597815FA",
+    "x-ratelimit-limit": "60",
+    "x-ratelimit-remaining": "53",
+    "x-ratelimit-reset": "1501045551",
+    "x-xss-protection": "1; mode=block",
+    ...
+  },
+  "body": [
+    {
+      "id": 1296269,
+      "private": false,
+      "owner": {
+        "id": 1,
+        "login": "octocat",
+        "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+        ...
+      },
+      "name": "hello-World",
+      "full_name": "octocat/hello-world",
+      "description": "Octocat's first repo!",
+      "url": "https://api.github.com/repos/octocat/hello-world",
+      ...
+    },
+    ...
+  ]
+}
+```
+
 
 ## API
 
@@ -129,7 +175,13 @@ Generally, `attempt` is not needed. The internal retry engine will pass the curr
 
 #### Returns
 
-A `Promise` that resolves to the JSON-parsed response. The `Promise` is rejected with a [Boom](https://www.npmjs.com/package/boom)-wrapped error if an HTTP error occurs. The `Promise` is rejected with a generic `Error` if an error is returned by the underlying request library (usually from [http.ClientRequest](https://nodejs.org/api/http.html#http_class_http_clientrequest)).
+A `Promise` that resolves to an `Object` with the following properties:
+
+- `statusCode`: `Number`, the HTTP status code provided in the response
+- `headers`: `Object`, HTTP headers (lower-cased) and their values provided in the response
+- `body`: `Any`, the JSON-parsed response body (or the raw body if `disableAutomaticJson` was used)
+
+The `Promise` is rejected with a [Boom](https://www.npmjs.com/package/boom)-wrapped error if an HTTP error occurs. The `Promise` is rejected with a generic `Error` if an error is returned by the underlying request library (usually from [http.ClientRequest](https://nodejs.org/api/http.html#http_class_http_clientrequest)).
 
 #### Examples
 
