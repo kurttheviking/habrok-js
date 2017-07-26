@@ -1,11 +1,18 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+
+## 2.0.1 &ndash; July 26, 2017
+
+- :books: Clarify changelog and README examples
+
 
 ## 2.0.0 &ndash; July 26, 2017
 
-- [breaking] `Habrok#request` resolves to an `Object` with `statusCode`, `headers`, and `body` properties
+- :zap: `Habrok#request` resolves to an `Object` with `statusCode`, `headers`, and `body` properties
 
 
 ## 1.0.0 &ndash; July 25, 2017
 
-- Initial release
+- :tada: Initial release

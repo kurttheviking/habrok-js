@@ -227,7 +227,7 @@ echo "npm test" > .git/hooks/pre-push
 
 ### Versioning
 
-This project follows [semantic versioning](http://semver.org/). See the [change log](CHANGELOG.md) for release information.
+This project follows [semantic versioning](http://semver.org/). See the [changelog](CHANGELOG.md) for release information.
 
 
 ## License
