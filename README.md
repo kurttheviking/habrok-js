@@ -37,25 +37,9 @@ habrok.request({
 {
   "statusCode": 200,
   "headers": {
-    "access-control-allow-origin": "*",
-    "access-control-expose-headers": "ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval",
-    "cache-control": "public, max-age=60, s-maxage=60",
     "content-length": "4477",
-    "content-security-policy": "default-src 'none'",
     "content-type": "application/json; charset=utf-8",
-    "date": "Wed, 26 Jul 2017 04:09:30 GMT",
     "etag": "6ffc6a0dbbe2613e4d8b3f7444e5c604",
-    "server": "GitHub.com",
-    "strict-transport-security": "max-age=31536000; includeSubdomains; preload",
-    "vary": "Accept, Accept-Encoding",
-    "x-content-type-options": "nosniff",
-    "x-frame-options": "deny",
-    "x-github-media-type": "github.v3",
-    "x-github-request-id": "A6B6:1E34C:866014:B49BDD:597815FA",
-    "x-ratelimit-limit": "60",
-    "x-ratelimit-remaining": "53",
-    "x-ratelimit-reset": "1501045551",
-    "x-xss-protection": "1; mode=block",
     ...
   },
   "body": [
