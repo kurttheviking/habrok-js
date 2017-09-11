@@ -22,6 +22,14 @@ describe('Habrok', () => {
       expect(habrok.DISABLE_CUSTOM_HEADERS).to.equal(false);
     });
 
+    it('sets the DISABLE_CUSTOM_HEADERS constant', () => {
+      expect(habrok.DISABLE_CUSTOM_HEADERS).to.equal(false);
+    });
+
+    it('sets the DISABLE_RETRY_ECONNRESET constant', () => {
+      expect(habrok.DISABLE_RETRY_ECONNRESET).to.equal(false);
+    });
+
     it('sets the RETRIES constant', () => {
       expect(habrok.RETRIES).to.equal(5);
     });
@@ -49,6 +57,7 @@ describe('Habrok', () => {
     const config = {
       disableAutomaticJson: true,
       disableCustomHeaders: true,
+      disableRetryEconnreset: true,
       retries: 3,
       retryCodes: [404, '503'],
       retryMaxDelay: 1 + parseInt(Math.random() * 1000, 10),
@@ -63,6 +72,10 @@ describe('Habrok', () => {
 
     it('sets the DISABLE_CUSTOM_HEADERS constant', () => {
       expect(habrok.DISABLE_CUSTOM_HEADERS).to.equal(config.disableCustomHeaders);
+    });
+
+    it('sets the DISABLE_RETRY_ECONNRESET constant', () => {
+      expect(habrok.DISABLE_RETRY_ECONNRESET).to.equal(config.disableRetryEconnreset);
     });
 
     it('sets the RETRIES constant', () => {

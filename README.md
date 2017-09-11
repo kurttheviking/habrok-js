@@ -86,6 +86,7 @@ Habrok([configuration])
 | :------- | :--- | :---------- | :------ |
 | `disableAutomaticJson` | `Boolean` | Disable JSON headers and request/response bodies | `false` |
 | `disableCustomHeaders` | `Boolean` | Disable request headers added by Habrok | `false` |
+| `disableRetryEconnreset` | `Boolean` | Disable retry for connection reset errors | `false` |
 | `retries` | `Number` | Number of times to retry a failed request | `5` |
 | `retryMinDelay` | `Number` | Minimum milliseconds to wait before retrying a request | `100` |
 | `retryMaxDelay` | `Number` | Maximum milliseconds to wait before retrying a request | *None* |

@@ -131,7 +131,7 @@ describe('Habrok#request with disabled custom headers', () => {
   });
 });
 
-describe('Habrok#request with disabled json parsing', () => {
+describe('Habrok#request with disabled JSON parsing', () => {
   const body = `<x>${uuid.v4()}</x>`;
   const res = { statusCode: 200, headers: { z: uuid.v4() } };
 
@@ -366,6 +366,75 @@ describe('Habrok#request with a non-retried HTTP error (500)', () => {
     .then(() => { throw new Error('fail test'); })
     .catch((err) => {
       expect(err.data).to.deep.equal(body);
+    });
+  });
+});
+
+describe('Habrok#request with a retried ECONNRESET error', () => {
+  const body = { x: uuid.v4() };
+  const requestError = new Error('ECONNRESET');
+  const res = {};
+
+  requestError.code = 'ECONNRESET';
+
+  let habrok;
+  let request;
+
+  beforeEach(() => {
+    mockery.enable({
+      warnOnReplace: false,
+      warnOnUnregistered: false,
+      useCleanCache: true
+    });
+
+    request = sinon.stub().yields(requestError, res, body);
+    mockery.registerMock('request', request);
+
+    habrok = require('../../index')({ retryMinDelay: 0 });
+  });
+
+  afterEach(() => {
+    mockery.deregisterAll();
+    mockery.disable();
+  });
+
+  it('retries request up to retry limit', () => {
+    const method = 'GET';
+    const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
+
+    return habrok.request({ method, uri })
+    .then(() => { throw new Error('fail test'); })
+    .catch(() => {
+      expect(request.callCount).to.equal(habrok.RETRIES);
+    });
+  });
+
+  it('rejects with the request error', () => {
+    const method = 'GET';
+    const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
+
+    return habrok.request({ method, uri })
+    .then(() => { throw new Error('fail test'); })
+    .catch((err) => {
+      expect(err).to.match(/ECONNRESET/);
+      expect(err.isBoom).to.equal(undefined);
+    });
+  });
+
+  it('rejects within expected elapsed time', () => {
+    const method = 'GET';
+    const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
+
+    const start = Date.now();
+
+    return habrok.request({ method, uri })
+    .then(() => { throw new Error('fail test'); })
+    .catch(() => {
+      // [KE] rough heuristic; empirically the observed elapsed time is between 9-10ms;
+      //      this test is sufficient to demonstrate elapsed time is substantially below default
+      const observed = Date.now() - start;
+
+      expect(observed).to.be.below(20);
     });
   });
 });
