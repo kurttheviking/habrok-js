@@ -210,7 +210,7 @@ To run the unit tests:
 npm test
 ```
 
-This project maintains 100% coverage of statements, branches, and functions. To determine unit test coverage:
+This project maintains ~100% coverage of statements, branches, and functions. To determine unit test coverage:
 
 ```sh
 npm run coverage
@@ -218,7 +218,7 @@ npm run coverage
 
 ### Contribute
 
-PRs are welcome! PRs must pass unit tests and linting prior to merge. For bugs, please include a failing test which passes when your PR is applied. To enable a git hook that runs `npm test` prior to pushing, `cd` into your repo and run:
+PRs are welcome! PRs must pass unit tests and linting prior to merge. PRs must not reduce unit coverage. For bugs, please include a failing test which passes when your PR is applied. To enable a git hook that runs `npm test` prior to pushing, `cd` into your repo and run:
 
 ```sh
 touch .git/hooks/pre-push
