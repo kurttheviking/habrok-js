@@ -155,6 +155,8 @@ habrok.request(req[, options])
 | Property | Type | Description | Default |
 | :------- | :--- | :---------- | :------ |
 | `attempt` | `Number` | Integer indicating current request sequence number | *None* |
+| `onRetriableFailure` | `Function` | A function executed whenever Habrok retries a request. As an argument, it will pass in an object with same properties returned by a `habrok.request`. | *None* |
+| `debugRequest` | `Function` | A function called after making a successful request or after the maximum number of attempts is met.  As an argument, it will pass in an object with the property `attempt`, the number of attempts made.| *None* |
 
 Generally, `attempt` is not needed. The internal retry engine will pass the current attempt count into the next request. Override only as necessary &ndash; e.g. in cases where the retry logic should be bypassed.
 
@@ -199,7 +201,7 @@ habrok.request({
 The [debug](https://www.npmjs.com/package/debug) module is used for runtime logging. Omit the `DEBUG` environment variable to squelch all logging. Set `DEBUG` to the desired level (e.g. `DEBUG=habrok`) to restrict logging to a desired service. Or, use `DEBUG=*` to get all debug output from everywhere, including dependencies.
 
 ```sh
-DEBUG=habrok* node index
+DEBUG=@agilemd/habrok* node index
 ```
 
 ### Tests
