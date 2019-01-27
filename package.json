@@ -1,7 +1,7 @@
 {
   "name": "habrok",
   "description": "Promises/A+, request-powered, boom-enabled, JSON-first HTTP API client with automatic retry",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "license": "ISC",
   "main": "index.js",
   "engines": {
