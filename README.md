@@ -8,7 +8,7 @@ habrok [![Build Status](https://travis-ci.org/kurttheviking/habrok-js.svg?branch
 
 ### Prerequisites
 
-- [Node.js LTS (6+)](https://nodejs.org/)
+- [Node.js LTS (8+)](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
 ### Installing
