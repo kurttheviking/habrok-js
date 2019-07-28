@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 
+## 4.1.0 &ndash; July 28, 2019
+
+- :arrow_up: Upgrade [boom](https://www.npmjs.com/package/@hapi/boom)
+
+
 ## 4.0.0 &ndash; July 28, 2019
 
 - :arrow_up: Upgrade dependencies
