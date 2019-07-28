@@ -35,22 +35,22 @@
     "promises-aplus"
   ],
   "dependencies": {
-    "boom": "5.2.0",
+    "boom": "6.0.0",
     "debug": "4.1.1",
     "has": "1.0.3",
     "request": "2.88.0"
   },
   "devDependencies": {
     "chai": "4.2.0",
-    "coveralls": "2.13.1",
-    "eslint": "3.19.0",
-    "eslint-config-airbnb": "15.1.0",
-    "eslint-plugin-import": "2.7.0",
+    "coveralls": "3.0.5",
+    "eslint": "6.1.0",
+    "eslint-config-airbnb": "17.1.1",
+    "eslint-plugin-import": "2.18.2",
     "istanbul": "0.4.5",
-    "mocha": "3.5.2",
-    "mocha-eslint": "4.1.0",
+    "mocha": "6.2.0",
+    "mocha-eslint": "5.0.0",
     "mockery": "2.1.0",
-    "sinon": "3.2.1",
+    "sinon": "7.3.2",
     "uuid-with-v6": "1.1.2"
   },
   "scripts": {
