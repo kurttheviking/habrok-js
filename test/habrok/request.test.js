@@ -3,7 +3,7 @@
 
 'use strict';
 
-const expect = require('chai').expect;
+const { expect } = require('chai');
 const mockery = require('mockery');
 const sinon = require('sinon');
 const uuid = require('uuid-with-v6');
@@ -207,10 +207,10 @@ describe('Habrok#request with a retried HTTP error (429)', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch(() => {
-      expect(request.callCount).to.equal(habrok.RETRIES);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch(() => {
+        expect(request.callCount).to.equal(habrok.RETRIES);
+      });
   });
 
   it('rejects with a Boom#tooManyRequests error', () => {
@@ -218,12 +218,12 @@ describe('Habrok#request with a retried HTTP error (429)', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch((err) => {
-      expect(err).to.match(/Too Many Requests/);
-      expect(err.isBoom).to.equal(true);
-      expect(err.output.statusCode).to.equal(429);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch((err) => {
+        expect(err).to.match(/Too Many Requests/);
+        expect(err.isBoom).to.equal(true);
+        expect(err.output.statusCode).to.equal(429);
+      });
   });
 
   it('rejected Boom#tooManyRequests contains response body', () => {
@@ -231,10 +231,10 @@ describe('Habrok#request with a retried HTTP error (429)', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch((err) => {
-      expect(err.data).to.deep.equal(body);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch((err) => {
+        expect(err.data).to.deep.equal(body);
+      });
   });
 
   it('rejects within expected elapsed time', () => {
@@ -244,14 +244,14 @@ describe('Habrok#request with a retried HTTP error (429)', () => {
     const start = Date.now();
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch(() => {
-      // [KE] rough heuristic; empirically the observed elapsed time is between 9-10ms;
-      //      this test is sufficient to demonstrate elapsed time is substantially below default
-      const observed = Date.now() - start;
+      .then(() => { throw new Error('fail test'); })
+      .catch(() => {
+        // [KE] rough heuristic; empirically the observed elapsed time is between 9-10ms;
+        //      this test is sufficient to demonstrate elapsed time is substantially below default
+        const observed = Date.now() - start;
 
-      expect(observed).to.be.below(20);
-    });
+        expect(observed).to.be.below(20);
+      });
   });
 });
 
@@ -285,10 +285,10 @@ describe('Habrok#request with a retried HTTP error (429) and max wait', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch(() => {
-      expect(request.callCount).to.equal(habrok.RETRIES);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch(() => {
+        expect(request.callCount).to.equal(habrok.RETRIES);
+      });
   });
 
   it('rejects within expected elapsed time', () => {
@@ -298,14 +298,14 @@ describe('Habrok#request with a retried HTTP error (429) and max wait', () => {
     const start = Date.now();
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch(() => {
-      // [KE] rough heuristic; empirically the observed elapsed time is between 9-10ms;
-      //      this test is sufficient to demonstrate elapsed time is substantially below default
-      const observed = Date.now() - start;
+      .then(() => { throw new Error('fail test'); })
+      .catch(() => {
+        // [KE] rough heuristic; empirically the observed elapsed time is between 9-10ms;
+        //      this test is sufficient to demonstrate elapsed time is substantially below default
+        const observed = Date.now() - start;
 
-      expect(observed).to.be.below(20);
-    });
+        expect(observed).to.be.below(20);
+      });
   });
 });
 
@@ -339,10 +339,10 @@ describe('Habrok#request with a non-retried HTTP error (500)', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch(() => {
-      expect(request.callCount).to.equal(1);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch(() => {
+        expect(request.callCount).to.equal(1);
+      });
   });
 
   it('rejects with a Boom#badImplementation error', () => {
@@ -350,12 +350,12 @@ describe('Habrok#request with a non-retried HTTP error (500)', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch((err) => {
-      expect(err).to.match(/Internal Server Error/);
-      expect(err.isBoom).to.equal(true);
-      expect(err.output.statusCode).to.equal(500);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch((err) => {
+        expect(err).to.match(/Internal Server Error/);
+        expect(err.isBoom).to.equal(true);
+        expect(err.output.statusCode).to.equal(500);
+      });
   });
 
   it('rejected Boom#badImplementation contains response body', () => {
@@ -363,10 +363,10 @@ describe('Habrok#request with a non-retried HTTP error (500)', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch((err) => {
-      expect(err.data).to.deep.equal(body);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch((err) => {
+        expect(err.data).to.deep.equal(body);
+      });
   });
 });
 
@@ -403,10 +403,10 @@ describe('Habrok#request with a retried ECONNRESET error', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch(() => {
-      expect(request.callCount).to.equal(habrok.RETRIES);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch(() => {
+        expect(request.callCount).to.equal(habrok.RETRIES);
+      });
   });
 
   it('rejects with the request error', () => {
@@ -414,11 +414,11 @@ describe('Habrok#request with a retried ECONNRESET error', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch((err) => {
-      expect(err).to.match(/ECONNRESET/);
-      expect(err.isBoom).to.equal(undefined);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch((err) => {
+        expect(err).to.match(/ECONNRESET/);
+        expect(err.isBoom).to.equal(undefined);
+      });
   });
 
   it('rejects within expected elapsed time', () => {
@@ -428,14 +428,14 @@ describe('Habrok#request with a retried ECONNRESET error', () => {
     const start = Date.now();
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch(() => {
-      // [KE] rough heuristic; empirically the observed elapsed time is between 9-10ms;
-      //      this test is sufficient to demonstrate elapsed time is substantially below default
-      const observed = Date.now() - start;
+      .then(() => { throw new Error('fail test'); })
+      .catch(() => {
+        // [KE] rough heuristic; empirically the observed elapsed time is between 9-10ms;
+        //      this test is sufficient to demonstrate elapsed time is substantially below default
+        const observed = Date.now() - start;
 
-      expect(observed).to.be.below(20);
-    });
+        expect(observed).to.be.below(20);
+      });
   });
 });
 
@@ -466,10 +466,10 @@ describe('Habrok#request with request.js error', () => {
     const uri = undefined;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch(() => {
-      expect(request.callCount).to.equal(1);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch(() => {
+        expect(request.callCount).to.equal(1);
+      });
   });
 
   it('rejects with a generic error', () => {
@@ -477,10 +477,10 @@ describe('Habrok#request with request.js error', () => {
     const uri = `https://api.viki.ng/longships/${uuid.v4()}`;
 
     return habrok.request({ method, uri })
-    .then(() => { throw new Error('fail test'); })
-    .catch((err) => {
-      expect(err).to.match(/invalid input/);
-      expect(err.isBoom).to.equal(undefined);
-    });
+      .then(() => { throw new Error('fail test'); })
+      .catch((err) => {
+        expect(err).to.match(/invalid input/);
+        expect(err.isBoom).to.equal(undefined);
+      });
   });
 });
