@@ -42,20 +42,20 @@
   },
   "devDependencies": {
     "chai": "4.2.0",
-    "coveralls": "3.0.5",
-    "eslint": "6.1.0",
-    "eslint-config-airbnb": "17.1.1",
-    "eslint-plugin-import": "2.18.2",
-    "istanbul": "0.4.5",
-    "mocha": "6.2.0",
-    "mocha-eslint": "5.0.0",
+    "coveralls": "3.0.9",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-plugin-import": "2.19.1",
+    "nyc": "15.0.0",
+    "mocha": "6.2.2",
+    "mocha-eslint": "6.0.0",
     "mockery": "2.1.0",
-    "sinon": "7.3.2",
+    "sinon": "8.0.2",
     "uuid-with-v6": "1.1.2"
   },
   "scripts": {
-    "coverage": "./node_modules/istanbul/lib/cli.js cover --report=json-summary --report=html _mocha ./test -- --recursive",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly ./test -- --recursive -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "node node_modules/mocha/bin/mocha ./test/$DIR --recursive"
   }
 }

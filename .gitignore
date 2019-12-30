@@ -9,6 +9,7 @@
 .lock-wscript
 .node_repl_history
 .npm
+.nyc_output
 build/Release
 coverage
 logs
