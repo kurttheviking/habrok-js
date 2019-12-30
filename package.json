@@ -55,7 +55,7 @@
   },
   "scripts": {
     "coverage": "nyc --reporter=lcov --reporter=text-summary npm run test",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc --reporter=text-lcov npm run test | coveralls",
     "test": "node node_modules/mocha/bin/mocha ./test/$DIR --recursive"
   }
 }
