@@ -47,7 +47,7 @@
     "eslint-config-airbnb": "18.1.0",
     "eslint-plugin-import": "2.20.2",
     "nyc": "15.0.1",
-    "mocha": "7.1.1",
+    "mocha": "10.2.0",
     "mocha-eslint": "6.0.0",
     "mockery": "2.1.0",
     "sinon": "9.0.2",
